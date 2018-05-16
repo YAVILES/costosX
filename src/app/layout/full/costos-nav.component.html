@@ -1,0 +1,29 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="isHandset ? 'dialog' : 'navigation'" [mode]="(isHandset | async)!.matches ? 'over' : 'side'"
+    [opened]="!(isHandset | async)!.matches">
+    <mat-toolbar color="primary">Costos</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['/dashboard']">Dashboard</a>
+      <a mat-list-item [routerLink]="['/conceptos']">Conceptos</a>
+      <a mat-list-item [routerLink]="['/registrar']">Registrar Usuario</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="(isHandset | async)!.matches">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span class="espacio-restante"></span>
+      <button type="button" aria-label="Cerrar Session" mat-button (click)="logout()">
+        Cerrar Session
+      </button>
+      <span>
+        <small>Usuario: {{user}}</small>
+        <br>
+        <span>Version: 0.0.0</span>
+      </span>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+    <costos-footer></costos-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

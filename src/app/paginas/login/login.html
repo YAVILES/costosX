@@ -1,0 +1,13 @@
+<div class="grid-container">
+    <h1 class="mat-h1">{{title}}</h1>
+    <div>
+        <form (ngSubmit)="autentificar($event)" novalidate="" #f="ngForm">
+            <input [(ngModel)]="modelLogin.usuario" type="text" class="form-control" name="inputUsuario" id="inputUsuario" placeholder="Usuario"
+                required>
+            <input [(ngModel)]="modelLogin.clave" type="password" class="form-control" name="inputPass" id="inputPass" placeholder="Contraseña"
+                required>
+            <button [disabled]="!f.form.valid" type="submit">Login</button>
+            <button type="button">Cancelar</button>
+        </form>
+    </div>
+</div>

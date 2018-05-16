@@ -1,0 +1,41 @@
+<div class="grid-container">
+  <h1 class="mat-h1">{{title}}</h1>
+
+  <mat-vertical-stepper [linear]='true' completed=!p1.form.valid>
+    <mat-step label="Paso 1">
+      <form #p1="ngForm">
+        <mat-form-field>
+          <input matInput type="text" maxlength="30" placeholder="Login" [(ngModel)]="usuarioModel.login" [ngModelOptions]="{standalone: true}"
+            required />
+          <button mat-button *ngIf="usuarioModel.login" matSuffix mat-icon-button aria-label="Limpiar" (click)="usuarioModel.login=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" maxlength="50" placeholder="Password" [(ngModel)]="usuarioModel.password" [ngModelOptions]="{standalone: true}"
+            required/>
+          <button mat-button *ngIf="usuarioModel.password" matSuffix mat-icon-button aria-label="Limpiar" (click)="usuarioModel.password=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Correo" [(ngModel)]="usuarioModel.correo" [ngModelOptions]="{standalone: true}" required/>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Resetear</button>
+          <button mat-button disabled=!p1.form.valid matStepperNext>Siguiente</button>
+        </div>
+      </form>
+      {{!p1.form.valid}}
+    </mat-step>
+    <mat-step label="Paso 2" editable=p1.form.valid>
+      <button mat-button matStepperPrevious>Anterior</button>
+      <button mat-button matStepperNext>Siguiente</button>
+    </mat-step>
+  </mat-vertical-stepper>
+
+
+  <div class="grid-container" [hidden]="!preview">{{usuarioModel | json}}</div>
+
+
+</div>
